@@ -30,7 +30,7 @@ jobs:
       DOCKER_IMAGE_URL: 'ghcr.io/${{ github.actor }}/${{ github.event.repository.name }}:${{ github.ref_name }}'
     steps:
       - name: Executing remote ssh using password
-        uses: appleboy/ssh-action@v@1.2.3
+        uses: appleboy/ssh-action@v1.2.3
         with:
           host: ${{ env.SERVER_IP }}
           username: ${{ env.SERVER_USER }}

@@ -23,7 +23,7 @@ jobs:
     needs: build-docker-image-job
     environment: production
     env:
-      SERVER_IP: '157.90.230.179'
+      SERVER_IP: ${{ secrets.SERVER_IP }}
       SERVER_USER: ${{ secrets.SERVER_USER }}
       SERVER_PASSWORD: ${{ secrets.SERVER_PASSWORD }}
       CONTAINER_NAME: ${{ github.actor }}

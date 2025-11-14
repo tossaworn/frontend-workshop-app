@@ -17,3 +17,24 @@ jobs:
           registry: ghcr.io
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
+
+  auto-deploy-docker-job:
+    runs-on: ubuntu-latest
+    needs: build-docker-image-job
+    env:
+      SERVER_IP: '157.90.230.179'
+      SERVER_USER: 'root'
+      SERVER_PASSWORD: 'bF9NN4xqsbmb'
+      CONTAINER_NAME: ${{ github.actor }}
+      SERVER_PORT: 8177
+      DOCKER_IMAGE_URL: 'ghcr.io/${{ github.actor }}/${{ github.event.repository.name }}:${{ github.ref_name }}'
+    steps:
+      - name: Executing remote ssh using password
+        uses: appleboy/ssh-action@v@1.2.3
+        with:
+          host: ${{ env.SERVER_IP }}
+          username: ${{ env.SERVER_USER }}
+          password: ${{ env.SERVER_PASSWORD }}
+          port: '22'
+          script: |
+            docker -v

@@ -21,10 +21,11 @@ jobs:
   auto-deploy-docker-job:
     runs-on: ubuntu-latest
     needs: build-docker-image-job
+    environment: production
     env:
       SERVER_IP: '157.90.230.179'
-      SERVER_USER: 'root'
-      SERVER_PASSWORD: 'bF9NN4xqsbmb'
+      SERVER_USER: ${{ secrets.SERVER_USER }}
+      SERVER_PASSWORD: ${{ secrets.SERVER_PASSWORD }}
       CONTAINER_NAME: ${{ github.actor }}
       SERVER_PORT: 8177
       DOCKER_IMAGE_URL: 'ghcr.io/${{ github.actor }}/${{ github.event.repository.name }}:${{ github.ref_name }}'

@@ -1,0 +1,19 @@
+name: Deploy to Github page
+
+on:
+  push:
+    tags:
+      - '*.*.*'
+    # branches:
+    #   - main
+
+jobs:
+  build-prod-job:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "build-prod-job"
+
+  auto-deploy-job:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "auto-deploy-job"
